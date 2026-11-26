@@ -8,7 +8,7 @@ O Sprout foi feito para a demonstração do Trabalho 2. Os números vêm de uma 
 
 ## Vídeo
 
-<!-- link do vídeo da demonstração entra aqui -->
+Os vídeos da demonstração estão no [README principal](../README.md).
 
 ## Código
 
