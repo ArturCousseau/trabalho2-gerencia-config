@@ -4,6 +4,7 @@ Trabalho 2 de Gerência de Configuração (UCS): analise da ferramenta scion da 
 ## Material
 - Slides: [`slides/apresentacao-final.pdf`](slides/apresentacao-final.pdf)
 - Problema central: [`conteudo/01-problema-central.md`](conteudo/01-problema-central.md)
+- Solução do Scion: [`conteudo/02-solucao-scion.md`](conteudo/02-solucao-scion.md)
 - Sprout (demonstração): [`sprout/README.md`](sprout/README.md)
 
 ## Estrutura do repositório
@@ -13,7 +14,8 @@ Trabalho 2 de Gerência de Configuração (UCS): analise da ferramenta scion da 
 ├── slides/
 │   └── apresentacao-final.pdf
 ├── conteudo/
-│   └── 01-problema-central.md
+│   ├── 01-problema-central.md
+│   └── 02-solucao-scion.md
 └── sprout/
     ├── README.md
     └── docs/
