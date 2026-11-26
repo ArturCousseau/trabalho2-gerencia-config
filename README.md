@@ -9,15 +9,11 @@ Trabalho 2 de Gerência de Configuração (UCS): analise da ferramenta scion da 
 
 ## Demonstração (Sprout)
 
-Código: https://github.com/ArturCousseau/sprout (tag `v1.0.0`; pode ficar privado depois do semestre, por isso a documentação está copiada em [sprout/](sprout/README.md)).
+Repositorio: https://github.com/ArturCousseau/sprout (tag `v1.0.0`
 
 Versão curta (49 s):
 
 https://github.com/user-attachments/assets/a60d4a96-4aaf-4e9a-b06f-96768064ee52
-
-Versão completa (1 min 46 s):
-
-https://github.com/user-attachments/assets/72cc3026-bff0-4393-952f-8811a7a1c8e2
 
 ## Estrutura do repositório
 ```
