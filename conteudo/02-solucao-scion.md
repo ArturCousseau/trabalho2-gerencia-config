@@ -5,12 +5,12 @@ O Scion resolve isso invertendo a premissa do Git. O Git assume que você pode t
 Só que buscar arquivos pela rede milhões de vezes por dia exige latência mínima. Para isso, o Scion usa uma arquitetura em três camadas que funciona como uma CDN. Na própria máquina do agente roda o `scion-daemon`, que atende pedidos localmente e já inicia com um snapshot pré-aquecido. Se o arquivo não está lá, o pedido sobe para o `scion-cache` regional, que entrega os objetos direto da memória RAM. Só em último caso a requisição chega ao `scion-server` central e ao armazenamento distribuído. Como todos os dados são imutáveis e endereçados por hash, o cache nunca fica desatualizado e como as três camadas falam exatamente os mesmos RPCs, o agente não precisa saber de onde o dado veio.  
 Segundo os dados da própria Anthropic, cada camada atinge mais de 99% de acerto no cache, o que reduziu o uso de CPU e memória em cerca de 200 vezes comparado aos antigos servidores espelho de Git. O trade-off é claro: você abre mão do trabalho offline em troca de velocidade em escala.
 
-pontos importantes caso perguntas:  
-`scion-daemon` **(Local):** Um *daemon* (processo rodando silenciosamente em segundo plano na própria máquina do agente). Ele responde aos pedidos por um **socket local** (o artigo não especifica o tipo) e já inicia com um *snapshot* pré-aquecido dos arquivos mais recentes.   
-`scion-cache` **(Regional):** Servidores no mesmo datacenter dos agentes que guardam os objetos mais acessados direto na **memória RAM** (ordens de grandeza mais rápido que ler de disco).   
-`scion-server` **(Origem):** O servidor central autoritativo, que só é acionado nos menos de 1% de casos em que o dado não estava nas camadas da frente. 
+## pontos importantes caso perguntas:  
+- `scion-daemon` **(Local):** Um *daemon* (processo rodando silenciosamente em segundo plano na própria máquina do agente). Ele responde aos pedidos por um **socket local** (o artigo não especifica o tipo) e já inicia com um *snapshot* pré-aquecido dos arquivos mais recentes.   
+- `scion-cache` **(Regional):** Servidores no mesmo datacenter dos agentes que guardam os objetos mais acessados direto na **memória RAM** (ordens de grandeza mais rápido que ler de disco).   
+- `scion-server` **(Origem):** O servidor central autoritativo, que só é acionado nos menos de 1% de casos em que o dado não estava nas camadas da frente. 
 
 O maior pesadelo de qualquer sistema de cache é a invalidação (entregar um arquivo velho depois que alguém atualizou o código). Como um hash nunca muda de conteúdo — um objeto é 100% imutável —, qualquer camada de cache pode guardar aquele hash sem medo de ficar desatualizada. Para pegar código novo, o agente só consulta qual é o hash do *commit* atual e baixa apenas os hashes que ainda não estão no cache. 
 
-Referências:
-ANTHROPIC. Redesigning source control at Anthropic. Anthropic Engineering, 2026. Disponível em: https://www.anthropic.com/engineering/redesigning-source-control. Acesso em: 22 nov. 2026.
+## Referências:
+- ANTHROPIC. Redesigning source control at Anthropic. Anthropic Engineering, 2026. Disponível em: https://www.anthropic.com/engineering/redesigning-source-control. Acesso em: 22 nov. 2026.
